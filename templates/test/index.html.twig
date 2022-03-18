@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Premier Page !{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Formulaire ✅</h1>
+    <ul>
+        <label> Civilités :</label>
+        <select Id='civilites' name='civilites' >
+            {% for civilite in civilites %}
+            <OPTION id='civilites' value='{{ civilite.getLibelle() }}'>{{ civilite.getLibelle() }}
+                {% endfor %}
+                </select>
+        <ul>
+            Liste des offres de castings :
+            {% for offre_casting in offre_castings %}
+                <li>Intitulé de l'offre : {{ offre_casting.intituleOffre}} ; Métier: {{offre_casting.getMetier()|length}} ; Domaine: {{ offre_casting.getDomaine()|length}}</li>
+            {% endfor %}
+        </ul>
+
+    </ul>
+</div>
+{% endblock %}
