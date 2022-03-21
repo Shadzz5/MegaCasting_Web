@@ -1,51 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <header>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<header>
     <div class="container">
     </div>
     <div class="d-flex justify-content-end">
         <button type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px">Se connecter</button>
-        <button type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;">S'inscrire <b>gratuitement</b></button>
+        <button type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;">S'inscrire <b>gratuitement</b>
+        </button>
     </div>
     <div class="d-flex flex-column align-items-center m-0 p-0">
-     <img src="img/unknown.png" class="w-25 mb-2"/>
+        <img src="img/unknown.png" class="w-25 mb-2"/>
     </div>
 
     <nav class=" navbar navbar-expand-lg navbar-light" style="background-color: white;">
-         <div class="container-fluid">
-            <a class="navbar-brand" href="#">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url('home') }}">MegaCasting</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Offre de casting</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('offre') }}">Offre de casting</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
                             Link
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="dropdown-item" href="#">Action</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
@@ -53,16 +59,22 @@
                         <a class="nav-link disabled">Link</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="offre">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
-    </header>
-    <body>
-    {% block body %}{% endblock %}
-    </body>
+</header>
+<body>
+{% block body %}{% endblock %}
+</body>
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li>{{ }}</li>
 
+    </ul>
+    <p class="text-center text-muted">© 2022 Company, Inc</p>
+</footer>
 </html>

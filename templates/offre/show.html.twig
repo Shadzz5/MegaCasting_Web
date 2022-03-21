@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MegaCasting{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="d-flex flex-row align-items-center rounded-3 mt-5 w-100 row-cols-2"
+                 style="border: 1px solid white; background-color: white; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                <div class="d-flex col">
+                    <img src="img/istockphoto-511459774-612x612.jpg" class="w-100 rounded-3"
+                         alt="...">
+                </div>
+                <div class="col" style="margin-left: 100px">
+                    <h1>{{ casting.intituleOffre|upper }}</h1>
+                    <p>Référence: {{ casting.referenceOffre }}</p>
+                    <p>Date de début: {{ casting.dateDebut|date('d/m/Y') }}</p>
+                    <p>Date de fin: {{ casting.dateFin|date('d/m/Y') }}</p>
+                    <p>Domaine: {{ casting.getDomaine().nom }}</p>
+                    <p>Métier: {{ casting.getMetier().nom }}</p>
+                    <p>Contrat: {{ casting.getTypeContrat().nomContrat }}</p>
+                    <p>Organisation: {{ casting.getOrganisation().nomOrganisation }}</p>
+                    <p>Ville: {{ casting.getVille() }}</p>
+                    <div class="">
+                        <button class="btn btn-outline-success">Postuler !</button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
