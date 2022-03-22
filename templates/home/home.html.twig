@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MegaCasting{% endblock %}
+
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex justify-content-center mt-2">
+            <h2>Recherche de casting par domaine</h2>
+        </div>
+        <div class="d-flex justify-content-between w-100 mb-5 mt-4 text-uppercase">
+            <a>Tous</a>
+            <a>Musique/Danse</a>
+            <a>Mode/Beauté</a>
+            <a>Théâtre/Humour</a>
+            <a>Télévision/Radio</a>
+            <a>Cinéna/Fiction</a>
+            <a>Influenceur</a>
+            <a>Divers</a>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <h3 class="m-0 w-50 ">Les derniers castings</h3>
+                <div class="d-flex justify-content-center mt-3 w-100 row row-cols-2 ">
+
+                    {% for offre_casting in offre_castings|slice(0, 6) %}
+                        <a class="card col"
+                           href="{{ path('show', {'id': offre_casting.identifiant}) }}"
+                           style="width: 45%; align-items: center; margin-right: 10px;margin-bottom: 10px; text-decoration: none; color: black ">
+                            <img src="img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">{{ offre_casting.intituleOffre }}</p>
+                                <p class="card-text">{{ offre_casting.getDomaine().nom }}
+                                    - {{ offre_casting.datedebut|date("d/m/Y") }}
+                                    au {{ offre_casting.datefin|date("d/m/Y") }}</p>
+
+
+                            </div>
+                        </a>
+
+                    {% endfor %}
+                    <div class="d-flex justify-content-center">
+                        <a class="mt-5 btn btn-outline-primary" href="{{ url('offre') }}">Voir plus de
+                            casting ->
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center col-4">
+                <div style="border: 2px solid white; border-radius: 25px; padding: 10px; background-color: white">
+                    <h3>Incrivez-vous gratuitement</h3>
+                    <p>Je m'inscris sur MégaCasting</p>
+                    <button class="btn btn-outline-danger">Pour postuler aux castings -></button>
+                    <p>ou</p>
+                    <button class="btn btn-outline-warning">Pour recruter des artistes -></button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

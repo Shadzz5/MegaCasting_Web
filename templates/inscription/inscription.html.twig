@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire gratuitement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <h1>S'inscrire gratuitement</h1>
+
+        </div>
+        <form method="post" class="d-flex flex-column align-items-center mt-5">
+            <div class="input-group mb-3 w-25">
+                <input type="text" class="form-control" placeholder="Nom" aria-label="Nom"
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="text" class="form-control" placeholder="Prénom" aria-label="Prénom"
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="text" class="form-control" placeholder="Utilisateur" aria-label="Utilisateur"
+                       aria-describedby="basic-addon1">
+            </div>
+            <select class="form-select mb-3 w-25" aria-label="Civilité">
+                <option selected>Civilité</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+
+            <div class="input-group mb-3 w-25">
+                <input type="text" class="form-control" placeholder="Email"
+                       aria-label="Email"
+                       aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="password" class="form-control" placeholder="Mot de passe"
+                       aria-label="Mot de passe"
+                       aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="password" class="form-control" placeholder="Confirmation Mot de passe"
+                       aria-label="Confirmation Mot de passe"
+                       aria-describedby="basic-addon2">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="file" class="form-control" id="inputGroupFile01">
+            </div>
+            <div class="d-flex flex-row w-25 justify-content-between ">
+                <button class="btn btn-outline-success " type="submit">Enregistrer</button>
+                <button class="btn btn-outline-danger" type="submit">Annuler</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

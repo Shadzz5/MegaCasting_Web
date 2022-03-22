@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ConnectionController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <h1>Se connecter</h1>
+        </div>
+        <form method="post" class="d-flex flex-column align-items-center mt-5">
+            <div class="input-group mb-3 w-25">
+                <input type="text" class="form-control" placeholder="Utilisateur" aria-label="Utilisateur"
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group mb-3 w-25">
+                <input type="password" class="form-control" placeholder="Mot de passe" aria-label="Mot de passe"
+                       aria-describedby="basic-addon1">
+            </div>
+            <div class="d-flex flex-row w-25 justify-content-between ">
+                <button class="btn btn-outline-success " type="submit">Enregistrer</button>
+                <button class="btn btn-outline-danger" type="submit">Annuler</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
