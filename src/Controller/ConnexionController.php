@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ConnectionController extends AbstractController
+class ConnexionController extends AbstractController
 {
-    #[Route('/connection', name: 'connection')]
+    #[Route('/connexion', name: 'connexion')]
     public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
     {
-        return $this->render('connection/connection.html.twig', [
+        return $this->render('connexion/connexion.html.twig', [
         ]);
     }
 }
