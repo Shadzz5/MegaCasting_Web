@@ -18,12 +18,15 @@
     <div class="container">
     </div>
     <div class="d-flex justify-content-end">
-        <button type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px">Se connecter</button>
-        <button type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;">S'inscrire <b>gratuitement</b>
-        </button>
+        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px" href="{{ url('connection') }}">Se
+            connecter</a>
+        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
+           href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b>
+        </a>
     </div>
-    <div class="d-flex flex-column align-items-center m-0 p-0">
-        <img src="img/unknown.png" class="w-25 mb-2"/>
+    <div class="d-flex justify-content-center">
+        <a href="{{ url('home') }}" class="w-25 mb-2">
+            <img src="img/unknown.png" class="w-100 mb-2"/></a>
     </div>
 
     <nav class=" navbar navbar-expand-lg navbar-light" style="background-color: white;">
@@ -59,7 +62,7 @@
                         <a class="nav-link disabled">Link</a>
                     </li>
                 </ul>
-                <form class="d-flex" action="offre">
+                <form class="d-flex" action="/offre">
                     <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>

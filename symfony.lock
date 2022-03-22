@@ -1,4 +1,7 @@
 {
+    "deployer/dist": {
+        "version": "v6.8.0"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -126,6 +129,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "9d254a22efca7264203eea98b866f16f944b2f09"
+        },
+        "files": [
+            "public/.htaccess"
         ]
     },
     "symfony/asset": {
