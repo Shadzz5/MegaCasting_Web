@@ -14,66 +14,66 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<header>
-    <div class="container">
-    </div>
-    <div class="d-flex justify-content-end">
-        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px" href="{{ url('connection') }}">Se
-            connecter</a>
-        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
-           href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b>
-        </a>
-    </div>
-    <div class="d-flex justify-content-center">
-        <a href="{{ url('home') }}" class="w-25 mb-2">
-            <img src="img/unknown.png" class="w-100 mb-2"/></a>
-    </div>
+{# <header> #}
+{#    <div class="container"> #}
+{#    </div> #}
+{#    <div class="d-flex justify-content-end"> #}
+{#        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px" href="{{ url('connection') }}">Se #}
+{#            connecter</a> #}
+{#        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;" #}
+{#           href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b> #}
+{#        </a> #}
+{#    </div> #}
+{#    <div class="d-flex justify-content-center"> #}
+{#        <a href="{{ url('home') }}" class="w-25 mb-2"> #}
+{#            <img src="img/unknown.png" class="w-100 mb-2"/></a> #}
+{#    </div> #}
 
-    <nav class=" navbar navbar-expand-lg navbar-light" style="background-color: white;">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url('home') }}">MegaCasting</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('offre') }}">Offre de casting</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Link</a>
-                    </li>
-                </ul>
-                <form class="d-flex" action="/offre">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+{#    <nav class=" navbar navbar-expand-lg navbar-light" style="background-color: white;"> #}
+{#        <div class="container-fluid"> #}
+{#            <a class="navbar-brand" href="{{ url('home') }}">MegaCasting</a> #}
+{#            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" #}
+{#                    aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation"> #}
+{#                <span class="navbar-toggler-icon"></span> #}
+{#            </button> #}
+{#            <div class="collapse navbar-collapse" id="navbarScroll"> #}
+{#                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;"> #}
+{#                    <li class="nav-item"> #}
+{#                        <a class="nav-link active" aria-current="page" href="{{ url('offre') }}">Offre de casting</a> #}
+{#                    </li> #}
+{#                    <li class="nav-item"> #}
+{#                        <a class="nav-link" href="#">Link</a> #}
+{#                    </li> #}
+{#                    <li class="nav-item dropdown"> #}
+{#                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" #}
+{#                           data-bs-toggle="dropdown" aria-expanded="false"> #}
+{#                            Link #}
+{#                        </a> #}
+{#                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown"> #}
+{#                            <li><a class="dropdown-item" href="#">Action</a></li> #}
+{#                            <li><a class="dropdown-item" href="#">Another action</a></li> #}
+{#                            <li> #}
+{#                                <hr class="dropdown-divider"> #}
+{#                            </li> #}
+{#                            <li><a class="dropdown-item" href="#">Something else here</a></li> #}
+{#                        </ul> #}
+{#                    </li> #}
+{#                    <li class="nav-item"> #}
+{#                        <a class="nav-link disabled">Link</a> #}
+{#                    </li> #}
+{#                </ul> #}
+{#                <form class="d-flex" action="/offre"> #}
+{#                    <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search"> #}
+{#                    <button class="btn btn-outline-success" type="submit">Search</button> #}
+{#                </form> #}
+{#            </div> #}
+{#        </div> #}
+{#    </nav> #}
+{# </header> #}
 <body>
 {% block body %}{% endblock %}
 </body>
-{{ render(controller(
-    'App\\Controller\\HomeController::countCastings'
-)) }}
+{# {{ render(controller( #}
+{#    'App\\Controller\\HomeController::countCastings' #}
+{# )) }} #}
 </html>
