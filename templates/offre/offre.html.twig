@@ -14,8 +14,14 @@
                         <select class="form-select w-75 mb-2" aria-label="Default select example">
                             <option selected>Indifférent</option>
                             {% for domaine in domaines %}
-                                <option value="{{ domaine.identifiant }}">{{ domaine.nom }}</option>
+                                {% if categorie == domaine.nom %}
+                                    <option selected value="{{ domaine.identifiant }}">{{ domaine.nom }}</option>
+                                {% else %}
+                                    <option value="{{ domaine.identifiant }}">{{ domaine.nom }}</option>
+                                {% endif %}
+
                             {% endfor %}
+
                         </select></div>
 
                     <p>Civilité</p>
@@ -58,7 +64,7 @@
                                 <a class="card col-12"
                                    href="{{ path('show', {'id': offre_casting.identifiant}) }}"
                                    style="width: 30%; align-items: center;margin-bottom: 10px; text-decoration: none; color: black">
-                                    <img src="img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
+                                    <img src="/img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <p class="card-text">{{ offre_casting.intituleOffre }}</p>
                                         <p class="card-text">{{ offre_casting.getDomaine().nom }}

@@ -12,7 +12,7 @@
                     <img src="img/istockphoto-511459774-612x612.jpg" class="w-100 rounded-3"
                          alt="...">
                 </div>
-                <div class="col" style="margin-left: 100px">
+                <div class="col w-25" style="margin-left: 100px">
                     <h1>{{ casting.intituleOffre|upper }}</h1>
                     <p>Référence: {{ casting.referenceOffre }}</p>
                     <p>Date de début: {{ casting.dateDebut|date('d/m/Y') }}</p>
@@ -22,13 +22,11 @@
                     <p>Contrat: {{ casting.getTypeContrat().nomContrat }}</p>
                     <p>Organisation: {{ casting.getOrganisation().nomOrganisation }}</p>
                     <p>Ville: {{ casting.getVille() }}</p>
-                    <div class="">
-                        <button class="btn btn-outline-success">Postuler !</button>
-
-                    </div>
-
                 </div>
-
+                <div class="col d-flex flex-column align-items-center" style="width: 20%">
+                    <h4>Postuler !</h4>
+                    <button class="btn btn-outline-success w-50">Postuler</button>
+                </div>
 
             </div>
         </div>

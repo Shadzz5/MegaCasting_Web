@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Civilite;
+use App\Entity\Domaine;
 use App\Entity\OffreDeCasting;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,10 +18,14 @@ class HomeController extends AbstractController
     {
         $em = $doctrine->getManager();
         $offre_castings = $em->getRepository(OffreDeCasting::class);
+        $domaines = $em->getRepository(Domaine::class);
+
         $oc = $offre_castings->findAll();
+        $domaine = $domaines->findAll();
 
         return $this->render('home/home.html.twig', [
             'offre_castings' => $oc,
+            'domaines' => $domaine
         ]);
     }
 

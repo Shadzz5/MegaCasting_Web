@@ -9,14 +9,9 @@
             <h2>Recherche de casting par domaine</h2>
         </div>
         <div class="d-flex justify-content-between w-100 mb-5 mt-4 text-uppercase">
-            <a>Tous</a>
-            <a>Musique/Danse</a>
-            <a>Mode/Beauté</a>
-            <a>Théâtre/Humour</a>
-            <a>Télévision/Radio</a>
-            <a>Cinéna/Fiction</a>
-            <a>Influenceur</a>
-            <a>Divers</a>
+            {% for domaine in domaines %}
+                <a href="{{ path('offre', {'categorie': domaine.nom}) }}">{{ domaine.nom }}</a>
+            {% endfor %}
         </div>
         <div class="row">
             <div class="col-8">
@@ -27,7 +22,7 @@
                         <a class="card col"
                            href="{{ path('show', {'id': offre_casting.identifiant}) }}"
                            style="width: 45%; align-items: center; margin-right: 10px;margin-bottom: 10px; text-decoration: none; color: black ">
-                            <img src="img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
+                            <img src="/img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">{{ offre_casting.intituleOffre }}</p>
                                 <p class="card-text">{{ offre_casting.getDomaine().nom }}

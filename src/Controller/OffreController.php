@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OffreController extends AbstractController
 {
-    #[Route('/offre', name: 'offre')]
-    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
+    #[Route('/offre/{categorie?}', name: 'offre')]
+    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie): Response
     {
         $em = $doctrine->getManager();
         $search = '';
@@ -40,12 +40,15 @@ class OffreController extends AbstractController
         $domaine = $em->getRepository(Domaine::class);
         $d = $domaine->findAll();
         $c = $civilite->findAll();
+
         return $this->render('offre/offre.html.twig', [
             'offre_castings' => $oc,
             'domaines' => $d,
             'civilites' => $c,
             'search' => $search,
-            'empty' => $bool
+            'empty' => $bool,
+            'categorie' => $categorie
+
 
         ]);
     }
@@ -60,6 +63,11 @@ class OffreController extends AbstractController
         return $this->render('offre/show.html.twig', [
             'casting' => $casting,
         ]);
+    }
+
+    public function filters(ManagerRegistry $doctrine): Response
+    {
+
     }
 
 }
