@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ApplicationController!{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="w-100 mt-5 d-flex justify-content-center">
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
