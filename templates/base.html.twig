@@ -24,42 +24,33 @@
            href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b>
         </a>
     </div>
-    <div class="d-flex justify-content-center">
-        <a href="{{ url('home') }}" class="w-25 mb-2">
-            <img src="/img/unknown.png" class="w-100 mb-2"/></a>
+    <div class="d-flex justify-content-center w-25" style="text-align: center; margin: auto">
+        <a href="{{ url('home') }}" style="width: 100%; display: inline-block">
+            <img src="/img/unknown.png" style="width: 70%"/>
+        </a>
+
     </div>
 
     <nav class=" navbar navbar-expand-lg navbar-light" style="background-color: white;">
-        <div class="container-fluid">
+        <div class="container-fluid" id="navbarScroll">
             <a class="navbar-brand" href="{{ url('home') }}">MegaCasting</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                     aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarScroll">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('offre') }}">Offre de casting</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('abonnement') }}">Abonnements</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            Link
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                    <li class=" nav-item">
+                        <a class="nav-link active" aria-current="page">Actualités</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Link</a>
+                        <a class="nav-link active" aria-current="page">Interviews</a>
                     </li>
                 </ul>
                 <form class="d-flex" action="/offre">
@@ -74,6 +65,6 @@
 {% block body %}{% endblock %}
 </body>
 {{ render(controller(
-    'App\\Controller\\HomeController::countCastings'
+    'App\\Controller\\LayoutController::countCastings'
 )) }}
 </html>

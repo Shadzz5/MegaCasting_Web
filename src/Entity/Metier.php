@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Metier
  *
- * @ORM\Table(name="Metier", indexes={@ORM\Index(name="IDX_560C08BADBAD1978", columns={"Identifiant_Domaine"})})
+ * @ORM\Table(name="Metier", indexes={@ORM\Index(name="IDX_560C08BAAAD8A9B7", columns={"identifiantDomaine"})})
  * @ORM\Entity
  */
 class Metier
@@ -15,7 +15,7 @@ class Metier
     /**
      * @var int
      *
-     * @ORM\Column(name="Identifiant", type="bigint", nullable=false)
+     * @ORM\Column(name="identifiant", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,7 +24,7 @@ class Metier
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=255, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
@@ -33,10 +33,10 @@ class Metier
      *
      * @ORM\ManyToOne(targetEntity="Domaine")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Identifiant_Domaine", referencedColumnName="Identifiant")
+     *   @ORM\JoinColumn(name="identifiantDomaine", referencedColumnName="identifiant")
      * })
      */
-    private $domaine;
+    private $identifiantdomaine;
 
     public function getIdentifiant(): ?string
     {
@@ -55,14 +55,14 @@ class Metier
         return $this;
     }
 
-    public function getDomaine(): ?Domaine
+    public function getIdentifiantdomaine(): ?Domaine
     {
-        return $this->domaine;
+        return $this->identifiantdomaine;
     }
 
-    public function setDomaine(?Domaine $domaine): self
+    public function setIdentifiantdomaine(?Domaine $identifiantdomaine): self
     {
-        $this->domaine = $domaine;
+        $this->identifiantdomaine = $identifiantdomaine;
 
         return $this;
     }

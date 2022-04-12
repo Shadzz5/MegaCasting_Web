@@ -15,7 +15,7 @@ class Utilisateur
     /**
      * @var int
      *
-     * @ORM\Column(name="Identifiant", type="bigint", nullable=false)
+     * @ORM\Column(name="identifiant", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,30 +24,30 @@ class Utilisateur
     /**
      * @var string
      *
-     * @ORM\Column(name="Nom", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="MotdePasse", type="string", length=50, nullable=true)
+     * @ORM\Column(name="motDePasse", type="string", length=50, nullable=true)
      */
-    private $motDePasse;
+    private $motdepasse;
 
     /**
      * @var bool
      *
-     * @ORM\Column(name="Acces", type="boolean", nullable=false)
+     * @ORM\Column(name="acces", type="boolean", nullable=false)
      */
     private $acces;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="DateAjout", type="date", nullable=false)
+     * @ORM\Column(name="dateAjout", type="date", nullable=false)
      */
-    private $dateAjout;
+    private $dateajout;
 
     public function getIdentifiant(): ?string
     {
@@ -66,14 +66,14 @@ class Utilisateur
         return $this;
     }
 
-    public function getMotDePasse(): ?string
+    public function getMotdepasse(): ?string
     {
-        return $this->motDePasse;
+        return $this->motdepasse;
     }
 
-    public function setMotDePasse(?string $motDePasse): self
+    public function setMotdepasse(?string $motdepasse): self
     {
-        $this->motDePasse = $motDePasse;
+        $this->motdepasse = $motdepasse;
 
         return $this;
     }
@@ -90,14 +90,14 @@ class Utilisateur
         return $this;
     }
 
-    public function getDateAjout(): ?\DateTimeInterface
+    public function getDateajout(): ?\DateTimeInterface
     {
-        return $this->dateAjout;
+        return $this->dateajout;
     }
 
-    public function setDateAjout(\DateTimeInterface $dateAjout): self
+    public function setDateajout(\DateTimeInterface $dateajout): self
     {
-        $this->dateAjout = $dateAjout;
+        $this->dateajout = $dateajout;
 
         return $this;
     }

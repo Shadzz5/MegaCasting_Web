@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class InscriptionController extends AbstractController
 {
     #[Route('/inscription', name: 'inscription')]
-    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
+    public function inscription(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
     {
         return $this->render('inscription/inscription.html.twig', [
         ]);

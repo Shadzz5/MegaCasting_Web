@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ConnexionController extends AbstractController
 {
     #[Route('/connexion', name: 'connexion')]
-    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
+    public function connexion(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
     {
         return $this->render('connexion/connexion.html.twig', [
         ]);

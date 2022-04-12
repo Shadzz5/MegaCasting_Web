@@ -15,7 +15,7 @@ class Organisation
     /**
      * @var int
      *
-     * @ORM\Column(name="Identifiant", type="bigint", nullable=false)
+     * @ORM\Column(name="identifiant", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,99 +24,99 @@ class Organisation
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Nom_Organisation", type="string", length=100, nullable=true)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=true)
      */
-    private $nomOrganisation;
+    private $nom;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Adresse_Organisation", type="string", length=100, nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=100, nullable=true)
      */
-    private $adresseOrganisation;
+    private $adresse;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Code_Postal", type="integer", nullable=false)
+     * @ORM\Column(name="codePostal", type="integer", nullable=false)
      */
-    private $codePostal;
+    private $codepostal;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="Numero_Telephone", type="integer", nullable=false)
+     * @ORM\Column(name="numeroTelephone", type="integer", nullable=false)
      */
-    private $numeroTelephone;
+    private $numerotelephone;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="Adresse_Email", type="string", length=100, nullable=true)
+     * @ORM\Column(name="adresseEmail", type="string", length=100, nullable=true)
      */
-    private $adresseEmail;
+    private $adresseemail;
 
     public function getIdentifiant(): ?string
     {
         return $this->identifiant;
     }
 
-    public function getNomOrganisation(): ?string
+    public function getNom(): ?string
     {
-        return $this->nomOrganisation;
+        return $this->nom;
     }
 
-    public function setNomOrganisation(?string $nomOrganisation): self
+    public function setNom(?string $nom): self
     {
-        $this->nomOrganisation = $nomOrganisation;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getAdresseOrganisation(): ?string
+    public function getAdresse(): ?string
     {
-        return $this->adresseOrganisation;
+        return $this->adresse;
     }
 
-    public function setAdresseOrganisation(?string $adresseOrganisation): self
+    public function setAdresse(?string $adresse): self
     {
-        $this->adresseOrganisation = $adresseOrganisation;
+        $this->adresse = $adresse;
 
         return $this;
     }
 
-    public function getCodePostal(): ?int
+    public function getCodepostal(): ?int
     {
-        return $this->codePostal;
+        return $this->codepostal;
     }
 
-    public function setCodePostal(int $codePostal): self
+    public function setCodepostal(int $codepostal): self
     {
-        $this->codePostal = $codePostal;
+        $this->codepostal = $codepostal;
 
         return $this;
     }
 
-    public function getNumeroTelephone(): ?int
+    public function getNumerotelephone(): ?int
     {
-        return $this->numeroTelephone;
+        return $this->numerotelephone;
     }
 
-    public function setNumeroTelephone(int $numeroTelephone): self
+    public function setNumerotelephone(int $numerotelephone): self
     {
-        $this->numeroTelephone = $numeroTelephone;
+        $this->numerotelephone = $numerotelephone;
 
         return $this;
     }
 
-    public function getAdresseEmail(): ?string
+    public function getAdresseemail(): ?string
     {
-        return $this->adresseEmail;
+        return $this->adresseemail;
     }
 
-    public function setAdresseEmail(?string $adresseEmail): self
+    public function setAdresseemail(?string $adresseemail): self
     {
-        $this->adresseEmail = $adresseEmail;
+        $this->adresseemail = $adresseemail;
 
         return $this;
     }

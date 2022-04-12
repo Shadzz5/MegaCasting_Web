@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Civilite;
 use App\Entity\Domaine;
 use App\Entity\OffreDeCasting;
+use App\Entity\TypeContrat;
+use App\Repository\OffreRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,12 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class OffreController extends AbstractController
 {
     #[Route('/offre/{categorie?}', name: 'offre')]
-    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie): Response
+    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie, OffreRepository $offreRepository): Response
     {
         $em = $doctrine->getManager();
         $search = '';
 
-        if (isset($_GET['q'])) {
+        if ($request->query->get("get")) {
             $search = $request->query->get('q');
         }
         if ((strlen(trim($search)) != 0)) {
@@ -36,20 +38,31 @@ class OffreController extends AbstractController
         } else {
             $bool = false;
         }
-        $civilite = $em->getRepository(Civilite::class);
+        $typeContrat = $em->getRepository(TypeContrat::class);
         $domaine = $em->getRepository(Domaine::class);
         $d = $domaine->findAll();
-        $c = $civilite->findAll();
+        $tc = $typeContrat->findAll();
 
+        $domaine = $request->query->get('selectDomaine');
+        $typeContrat = $request->query->get('selectTypeContrat');
+
+        if ($domaine != null) {
+            $oc = $offreRepository->findByDomaine($domaine);
+        }
+        if ($typeContrat != null) {
+            $oc = $offreRepository->findByContrat($typeContrat);
+
+        } else {
+            $offre_castings = $em->getRepository(OffreDeCasting::class);
+            $oc = $offre_castings->findAll();
+        }
         return $this->render('offre/offre.html.twig', [
             'offre_castings' => $oc,
             'domaines' => $d,
-            'civilites' => $c,
+            'typeContrats' => $tc,
             'search' => $search,
             'empty' => $bool,
-            'categorie' => $categorie
-
-
+            'categorie' => $categorie,
         ]);
     }
 
@@ -64,10 +77,4 @@ class OffreController extends AbstractController
             'casting' => $casting,
         ]);
     }
-
-    public function filters(ManagerRegistry $doctrine): Response
-    {
-
-    }
-
 }

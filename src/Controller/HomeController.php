@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
+    public function home(Request $request, SessionInterface $session, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $offre_castings = $em->getRepository(OffreDeCasting::class);
@@ -38,28 +38,6 @@ class HomeController extends AbstractController
 
         return $this->render('offre/show.html.twig', [
             'casting' => $casting,
-        ]);
-    }
-
-    public function countCastings(ManagerRegistry $doctrine): Response
-    {
-        $em = $doctrine->getManager();
-
-        $offreCastings = $em->getRepository(OffreDeCasting::class);
-
-        $results = $offreCastings->createQueryBuilder('c')
-            ->select('count(c.identifiant)')
-            ->getQuery()
-            ->getSingleScalarResult();
-
-        $resultsDate = $offreCastings->createQueryBuilder('c')
-            ->select('max(c.dateDebut)')
-            ->getQuery()
-            ->getSingleScalarResult();
-
-        return $this->render('layout/footer.html.twig', [
-            'results' => $results,
-            'resultsDate' => $resultsDate
         ]);
     }
 }

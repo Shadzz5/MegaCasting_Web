@@ -1,7 +1,7 @@
 <footer class="py-3 my-4">
     <ul class="d-flex flex-column align-items-center border-bottom pb-3 mb-3" style="list-style: none">
         <li>Nombre de castings : {{ results }}</li>
-        <li>Date du dernier ajout : {{ resultsDate }}</li>
+        <li>Date du dernier ajout : {{ resultsDate|date('d/m/Y') }}</li>
 
     </ul>
     <p class="text-center text-muted">© 2022 Company, Inc</p>

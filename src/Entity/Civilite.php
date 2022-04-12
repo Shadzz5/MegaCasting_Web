@@ -15,7 +15,7 @@ class Civilite
     /**
      * @var int
      *
-     * @ORM\Column(name="Identifiant", type="integer", nullable=false)
+     * @ORM\Column(name="identifiant", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -24,42 +24,42 @@ class Civilite
     /**
      * @var string
      *
-     * @ORM\Column(name="Libelle", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
-    private $libelle;
+    private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="LibelleCourt", type="string", length=10, nullable=false)
+     * @ORM\Column(name="nomCourt", type="string", length=10, nullable=false)
      */
-    private $libelleCourt;
+    private $nomcourt;
 
     public function getIdentifiant(): ?int
     {
         return $this->identifiant;
     }
 
-    public function getLibelle(): ?string
+    public function getNom(): ?string
     {
-        return $this->libelle;
+        return $this->nom;
     }
 
-    public function setLibelle(string $libelle): self
+    public function setNom(string $nom): self
     {
-        $this->libelle = $libelle;
+        $this->nom = $nom;
 
         return $this;
     }
 
-    public function getLibelleCourt(): ?string
+    public function getNomcourt(): ?string
     {
-        return $this->libelleCourt;
+        return $this->nomcourt;
     }
 
-    public function setLibelleCourt(string $libelleCourt): self
+    public function setNomcourt(string $nomcourt): self
     {
-        $this->libelleCourt = $libelleCourt;
+        $this->nomcourt = $nomcourt;
 
         return $this;
     }
