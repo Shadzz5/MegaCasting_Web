@@ -63,7 +63,7 @@ class OffreDeCasting
      *
      * @ORM\ManyToOne(targetEntity="Metier")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="identifiantMetier", referencedColumnName="identifiant")
+     *   @ORM\JoinColumn(name="identifiantMetier", referencedColumnName="identifiant", nullable=false)
      * })
      */
     private $identifiantMetier;
@@ -73,7 +73,7 @@ class OffreDeCasting
      *
      * @ORM\ManyToOne(targetEntity="Organisation")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="identifiantOrganisation", referencedColumnName="identifiant")
+     *   @ORM\JoinColumn(name="identifiantOrganisation", referencedColumnName="identifiant", nullable=false)
      * })
      */
     private $identifiantorganisation;
@@ -83,7 +83,7 @@ class OffreDeCasting
      *
      * @ORM\ManyToOne(targetEntity="TypeContrat")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="identifiantTypeContrat", referencedColumnName="identifiant")
+     *   @ORM\JoinColumn(name="identifiantTypeContrat", referencedColumnName="identifiant", nullable=false)
      * })
      */
     private $identifianttypecontrat;

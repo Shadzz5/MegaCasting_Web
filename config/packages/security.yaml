@@ -9,7 +9,7 @@ security:
     app_user_provider:
       entity:
         class: App\Entity\Artiste
-        property: email
+        property: pseudo
   firewalls:
     dev:
       pattern: ^/((profiler|wdt)|css|images|js)/

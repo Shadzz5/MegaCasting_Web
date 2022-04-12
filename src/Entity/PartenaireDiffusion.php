@@ -47,8 +47,8 @@ class PartenaireDiffusion
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Domaine", inversedBy="identifiantpartenaire")
-     * @ORM\JoinTable(name="partenairedomaine",
+     * @ORM\ManyToMany(targetEntity="Domaine", inversedBy="identifiantPartenaire")
+     * @ORM\JoinTable(name="PartenaireDomaine",
      *   joinColumns={
      *     @ORM\JoinColumn(name="identifiantPartenaire", referencedColumnName="identifiant")
      *   },

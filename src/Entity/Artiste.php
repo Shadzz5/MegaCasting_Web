@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -14,6 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="Artiste", indexes={@ORM\Index(name="IDX_53BA0CD3EB49C4C1", columns={"identifiantCivilite"})})
  * @ORM\Entity
  */
+#[UniqueEntity(fields: ['pseudo'], message: 'There is already an account with this pseudo')]
 class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
@@ -24,64 +26,56 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $identifiant;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
     private $nom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
      */
     private $prenom;
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="cv", type="string", length=100, nullable=true)
      */
     private $cv;
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="pseudo", type="string", length=100, nullable=true)
      */
     private $pseudo;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateNaissance", type="date", nullable=true)
      */
     private $datenaissance;
-
     /**
      * @var bool
      *
      * @ORM\Column(name="verification", type="boolean", nullable=false)
      */
     private $verification;
-
     /**
      * @var \Civilite
      *
      * @ORM\ManyToOne(targetEntity="Civilite")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="identifiantCivilite", referencedColumnName="identifiant")
+     *   @ORM\JoinColumn(name="identifiantCivilite", referencedColumnName="identifiant",nullable=false)
      * })
      */
     private $identifiantcivilite;
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Offredecasting", inversedBy="identifiantartiste")
-     * @ORM\JoinTable(name="artisteoffre",
+     * @ORM\ManyToMany(targetEntity="Offredecasting", inversedBy="identifiantArtiste")
+     * @ORM\JoinTable(name="ArtisteOffre",
      *   joinColumns={
      *     @ORM\JoinColumn(name="identifiantArtiste", referencedColumnName="identifiant")
      *   },
@@ -152,7 +146,7 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-    
+
     public function getDatenaissance(): ?\DateTimeInterface
     {
         return $this->datenaissance;
@@ -217,13 +211,11 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
-
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
-
 
     /**
      * A visual identifier that represents this user.
@@ -232,7 +224,7 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string)$this->email;
+        return (string)$this->pseudo;
     }
 
     /**
