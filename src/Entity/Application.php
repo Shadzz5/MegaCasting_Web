@@ -154,8 +154,4 @@ class Application
     {
         $this->dateAnniversaire = $dateAnniversaire;
     }
-
-
 }
-
-?>

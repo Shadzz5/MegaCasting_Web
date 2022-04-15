@@ -63,6 +63,4 @@ class Civilite
 
         return $this;
     }
-
-
 }

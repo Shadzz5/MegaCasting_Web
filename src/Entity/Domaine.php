@@ -88,5 +88,4 @@ class Domaine
 
         return $this;
     }
-
 }

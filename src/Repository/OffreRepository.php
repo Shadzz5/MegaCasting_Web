@@ -6,6 +6,7 @@ use App\Entity\OffreDeCasting;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -23,8 +24,12 @@ class OffreRepository extends ServiceEntityRepository
 
     public function findByDomaine(int $value)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.domaine = :val')
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->select('c')
+            ->innerJoin('c.identifiantMetier', 'm', Join::ON, $qb->expr()->andx(
+                $qb->expr()->eq('m.identifiant', 'c.identifiantMetier'),
+            ))->where('m.identifiantDomaine = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult();
@@ -33,7 +38,7 @@ class OffreRepository extends ServiceEntityRepository
     public function findByContrat(int $value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.TypeContrat = :val')
+            ->andWhere('c.identifiantTypeContrat = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult();

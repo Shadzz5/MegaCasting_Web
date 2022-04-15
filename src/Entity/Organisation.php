@@ -120,6 +120,4 @@ class Organisation
 
         return $this;
     }
-
-
 }

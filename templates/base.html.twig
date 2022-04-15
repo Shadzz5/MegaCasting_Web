@@ -18,11 +18,19 @@
     <div class="container">
     </div>
     <div class="d-flex justify-content-end">
-        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px" href="{{ url('connexion') }}">Se
-            connecter</a>
-        <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
-           href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b>
-        </a>
+        {% if(is_granted("IS_AUTHENTICATED_FULLY")) %}
+            <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
+               href="{{ url('app_logout') }}">Déconnexion
+            </a>
+        {% else %}
+            <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px"
+               href="{{ url('connexion') }}">Se
+                connecter</a>
+            <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
+               href="{{ url('inscription') }}">S'inscrire <b>gratuitement</b>
+            </a>
+        {% endif %}
+
     </div>
     <div class="d-flex justify-content-center w-25" style="text-align: center; margin: auto">
         <a href="{{ url('home') }}" style="width: 100%; display: inline-block">

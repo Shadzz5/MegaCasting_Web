@@ -44,6 +44,4 @@ class TypeContrat
 
         return $this;
     }
-
-
 }

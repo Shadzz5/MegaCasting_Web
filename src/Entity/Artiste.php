@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Artiste
@@ -15,7 +15,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="Artiste", indexes={@ORM\Index(name="IDX_53BA0CD3EB49C4C1", columns={"identifiantCivilite"})})
  * @ORM\Entity
  */
-#[UniqueEntity(fields: ['pseudo'], message: 'There is already an account with this pseudo')]
 class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
@@ -31,12 +30,18 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      *
      * @ORM\Column(name="nom", type="string", length=100, nullable=false)
      */
+    #[Assert\NotBlank(
+        message: 'Le champ nom est obligatoire',
+    )]
     private $nom;
     /**
      * @var string
      *
      * @ORM\Column(name="prenom", type="string", length=100, nullable=false)
      */
+    #[Assert\NotBlank(
+        message: 'Le champ prénom est obligatoire',
+    )]
     private $prenom;
     /**
      * @var string|null
@@ -44,12 +49,6 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(name="cv", type="string", length=100, nullable=true)
      */
     private $cv;
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="pseudo", type="string", length=100, nullable=true)
-     */
-    private $pseudo;
     /**
      * @var \DateTime
      *
@@ -70,11 +69,11 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      *   @ORM\JoinColumn(name="identifiantCivilite", referencedColumnName="identifiant",nullable=false)
      * })
      */
-    private $identifiantcivilite;
+    private $identifiantCivilite;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Offredecasting", inversedBy="identifiantArtiste")
+     * @ORM\ManyToMany(targetEntity="OffreDeCasting", inversedBy="identifiantArtiste")
      * @ORM\JoinTable(name="ArtisteOffre",
      *   joinColumns={
      *     @ORM\JoinColumn(name="identifiantArtiste", referencedColumnName="identifiant")
@@ -84,14 +83,14 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      *   }
      * )
      */
-    private $identifiantoffre;
+    private $identifiantOffre;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->identifiantoffre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->identifiantOffre = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getIdentifiant(): ?string
@@ -171,14 +170,14 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getIdentifiantcivilite(): ?Civilite
+    public function getIdentifiantCivilite(): ?Civilite
     {
-        return $this->identifiantcivilite;
+        return $this->identifiantCivilite;
     }
 
     public function setIdentifiantcivilite(?Civilite $identifiantcivilite): self
     {
-        $this->identifiantcivilite = $identifiantcivilite;
+        $this->identifiantCivilite = $identifiantcivilite;
 
         return $this;
     }
@@ -218,13 +217,24 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    #[Assert\NotBlank(
+        message: 'Le champ email est obligatoire',
+    )]
+    #[Assert\Email(
+        message: 'la valeur {{ value }} n\'est pas une email',
+    )]
+    private $email;
+
+    /**
      * A visual identifier that represents this user.
      *
      * @see UserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string)$this->pseudo;
+        return (string)$this->email;
     }
 
     /**
@@ -268,5 +278,17 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
     }
 }

@@ -36,7 +36,8 @@ class ApplicationType extends AbstractType
             ])
             ->add('applicationDate', HiddenType::class)
             ->add('cv', FileType::class, ['mapped' => false, 'required' => false])
-            ->add('save', SubmitType::class, ['label' => 'Postuler']);;
+            ->add('save', SubmitType::class, ['label' => 'Postuler']);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -46,5 +47,3 @@ class ApplicationType extends AbstractType
         ]);
     }
 }
-
-?>

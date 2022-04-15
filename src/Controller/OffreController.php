@@ -51,7 +51,6 @@ class OffreController extends AbstractController
         }
         if ($typeContrat != null) {
             $oc = $offreRepository->findByContrat($typeContrat);
-
         } else {
             $offre_castings = $em->getRepository(OffreDeCasting::class);
             $oc = $offre_castings->findAll();
@@ -66,7 +65,7 @@ class OffreController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'show')]
+    #[Route('/offre/{id}', name: 'show')]
     public function show($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();

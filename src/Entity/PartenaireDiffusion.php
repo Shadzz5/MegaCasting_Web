@@ -131,5 +131,4 @@ class PartenaireDiffusion
 
         return $this;
     }
-
 }

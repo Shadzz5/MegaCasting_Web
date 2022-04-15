@@ -9,7 +9,7 @@ security:
     app_user_provider:
       entity:
         class: App\Entity\Artiste
-        property: pseudo
+        property: email
   firewalls:
     dev:
       pattern: ^/((profiler|wdt)|css|images|js)/
@@ -17,6 +17,14 @@ security:
     main:
       lazy: true
       provider: app_user_provider
+      form_login:
+        login_path: login
+        check_path: login
+        enable_csrf: true
+      logout:
+        path: app_logout
+  #      login_throttling: null
+  #        max_attempts: 3
 
   # where to redirect after logout
   # target: app_any_route

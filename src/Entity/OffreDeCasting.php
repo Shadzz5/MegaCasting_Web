@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Offredecasting
+ * OffreDeCasting
  *
- * @ORM\Table(name="OffredeCasting", indexes={@ORM\Index(name="IDX_2421F0682B868BAA", columns={"identifiantMetier"}), @ORM\Index(name="IDX_2421F068D58D8CC9", columns={"identifiantOrganisation"}), @ORM\Index(name="IDX_2421F0681ACEB4D9", columns={"identifiantTypeContrat"})})
+ * @ORM\Table(name="OffreDeCasting", indexes={@ORM\Index(name="IDX_2421F0682B868BAA", columns={"identifiantMetier"}), @ORM\Index(name="IDX_2421F068D58D8CC9", columns={"identifiantOrganisation"}), @ORM\Index(name="IDX_2421F0681ACEB4D9", columns={"identifiantTypeContrat"})})
  * @ORM\Entity
  */
 class OffreDeCasting
@@ -76,7 +76,7 @@ class OffreDeCasting
      *   @ORM\JoinColumn(name="identifiantOrganisation", referencedColumnName="identifiant", nullable=false)
      * })
      */
-    private $identifiantorganisation;
+    private $identifiantOrganisation;
 
     /**
      * @var \TypeContrat
@@ -86,7 +86,7 @@ class OffreDeCasting
      *   @ORM\JoinColumn(name="identifiantTypeContrat", referencedColumnName="identifiant", nullable=false)
      * })
      */
-    private $identifianttypecontrat;
+    private $identifiantTypeContrat;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -103,7 +103,7 @@ class OffreDeCasting
         $this->identifiantartiste = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getIdentifiant(): ?string
+    public function getIdentifiant(): ?int
     {
         return $this->identifiant;
     }
@@ -168,38 +168,38 @@ class OffreDeCasting
         return $this;
     }
 
-    public function getIdentifiantMetier(): ?Metier
+    public function getIdentifiantMetier(): Metier
     {
         return $this->identifiantMetier;
     }
 
-    public function setIdentifiantmetier(?Metier $identifiantmetier): self
+    public function setIdentifiantMetier(?Metier $identifiantMetier): self
     {
-        $this->identifiantmetier = $identifiantmetier;
+        $this->identifiantMetier = $identifiantMetier;
 
         return $this;
     }
 
-    public function getIdentifiantorganisation(): ?Organisation
+    public function getIdentifiantOrganisation(): ?Organisation
     {
-        return $this->identifiantorganisation;
+        return $this->identifiantOrganisation;
     }
 
-    public function setIdentifiantorganisation(?Organisation $identifiantorganisation): self
+    public function setIdentifiantOrganisation(?Organisation $identifiantorganisation): self
     {
-        $this->identifiantorganisation = $identifiantorganisation;
+        $this->identifiantOrganisation = $identifiantorganisation;
 
         return $this;
     }
 
-    public function getIdentifianttypecontrat(): ?TypeContrat
+    public function getIdentifiantTypeContrat(): ?TypeContrat
     {
-        return $this->identifianttypecontrat;
+        return $this->identifiantTypeContrat;
     }
 
-    public function setIdentifianttypecontrat(?TypeContrat $identifianttypecontrat): self
+    public function setIdentifiantTypeContrat(?TypeContrat $identifianttypecontrat): self
     {
-        $this->identifianttypecontrat = $identifianttypecontrat;
+        $this->identifiantTypeContrat = $identifianttypecontrat;
 
         return $this;
     }
@@ -230,5 +230,4 @@ class OffreDeCasting
 
         return $this;
     }
-
 }

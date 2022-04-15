@@ -36,7 +36,7 @@ class Metier
      *   @ORM\JoinColumn(name="identifiantDomaine", referencedColumnName="identifiant")
      * })
      */
-    private $identifiantdomaine;
+    private $identifiantDomaine;
 
     public function getIdentifiant(): ?string
     {
@@ -55,17 +55,15 @@ class Metier
         return $this;
     }
 
-    public function getIdentifiantdomaine(): ?Domaine
+    public function getIdentifiantDomaine(): Domaine
     {
-        return $this->identifiantdomaine;
+        return $this->identifiantDomaine;
     }
 
-    public function setIdentifiantdomaine(?Domaine $identifiantdomaine): self
+    public function setIdentifiantDomaine(Domaine $identifiantDomaine): self
     {
-        $this->identifiantdomaine = $identifiantdomaine;
+        $this->identifiantDomaine = $identifiantDomaine;
 
         return $this;
     }
-
-
 }

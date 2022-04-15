@@ -27,8 +27,8 @@
                                 {% endif %}
 
                             {% endfor %}
-
-                        </select></div>
+                        </select>
+                    </div>
 
                     <p>Contrat</p>
                     <div class="d-flex justify-content-center">
@@ -63,7 +63,8 @@
                                 <a class="card col-12"
                                    href="{{ path('show', {'id': offre_casting.identifiant}) }}"
                                    style="width: 30%; align-items: center;margin-bottom: 10px; text-decoration: none; color: black">
-                                    <img src="/img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
+                                    <img src="/img/istockphoto-511459774-612x612.jpg" class="card-img-top"
+                                         alt="...">
                                     <div class="card-body">
                                         <p class="card-text">{{ offre_casting.nom }}</p>
                                         <p class="card-text">{{ offre_casting.getIdentifiantMetier().getIdentifiantDomaine().nom }}
