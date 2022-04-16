@@ -39,12 +39,21 @@
                                 <option value="{{ typeContrat.identifiant }}">{{ typeContrat.nomcontrat }}</option>
                             {% endfor %}
                         </select></div>
+                    <p>Métier</p>
+
+                    <div class="d-flex justify-content-center">
+                        <select class="form-select w-100 mb-2" aria-label="Default select example"
+                                name="selectMetier">
+                            <option selected value="0">Indifférent</option>
+                            {% for metier in metiers %}
+                                <option value="{{ metier.identifiant }}">{{ metier.nom }}</option>
+                            {% endfor %}
+                        </select></div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-outline-primary w-75 mb-2"><i class="bi bi-search"></i>Recherche
                         </button>
 
                     </div>
-
                 </div>
             </div>
             <div class="col-9 ">
@@ -59,7 +68,7 @@
                     {% else %}
                         <div class="d-flex justify-content-around mt-3 w-100 row">
 
-                            {% for offre_casting in offre_castings|slice(0, 6) %}
+                            {% for offre_casting in offre_castings %}
                                 <a class="card col-12"
                                    href="{{ path('show', {'id': offre_casting.identifiant}) }}"
                                    style="width: 30%; align-items: center;margin-bottom: 10px; text-decoration: none; color: black">
@@ -67,7 +76,7 @@
                                          alt="...">
                                     <div class="card-body">
                                         <p class="card-text">{{ offre_casting.nom }}</p>
-                                        <p class="card-text">{{ offre_casting.getIdentifiantMetier().getIdentifiantDomaine().nom }}
+                                        <p class="card-text">{{ offre_casting.getMetier().getDomaine().nom }}
                                             - {{ offre_casting.datedebut|date("d/m/Y") }}
                                             au {{ offre_casting.datefin|date("d/m/Y") }}</p>
 
@@ -76,6 +85,10 @@
 
 
                             {% endfor %}
+                            <div class="d-flex justify-content-center">
+                                {{ knp_pagination_render(offre_castings) }}
+
+                            </div>
                         </div>
                     {% endif %}
                 </div>

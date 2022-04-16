@@ -27,7 +27,7 @@
                             <img src="/img/istockphoto-511459774-612x612.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <p class="card-text">{{ offre_casting.nom }}</p>
-                                <p class="card-text">{{ offre_casting.getIdentifiantMetier().getIdentifiantDomaine().nom }}
+                                <p class="card-text">{{ offre_casting.getMetier().getDomaine().nom }}
                                     - {{ offre_casting.datedebut|date("d/m/Y") }}
                                     au {{ offre_casting.datefin|date("d/m/Y") }}</p>
 

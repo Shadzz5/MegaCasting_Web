@@ -15,13 +15,13 @@
                 <div class="d-flex flex-column col w-25" style="margin-left: 100px">
                     <h1>{{ casting.nom|upper }}</h1>
                     <p>Référence: {{ casting.reference }}</p>
-                    <p>Domaine: {{ casting.getIdentifiantMetier().getIdentifiantDomaine().nom }}</p>
-                    <p>Métier: {{ casting.getIdentifiantMetier().nom }}</p>
-                    <p>Contrat: {{ casting.getIdentifiantTypeContrat().nomContrat }}</p>
-                    <p>Organisation: {{ casting.getIdentifiantOrganisation().nom }}</p>
-                    <p>Adresse de l'organisation: {{ casting.getIdentifiantOrganisation().adresse }}</p>
-                    <p>Numéro de téléphone: {{ casting.getIdentifiantOrganisation().numeroTelephone }}</p>
-                    <p>Adresse email: {{ casting.getIdentifiantOrganisation().adresseEmail }}</p>
+                    <p>Domaine: {{ casting.getMetier().getDomaine().nom }}</p>
+                    <p>Métier: {{ casting.getMetier().nom }}</p>
+                    <p>Contrat: {{ casting.getTypeContrat().nomContrat }}</p>
+                    <p>Organisation: {{ casting.getOrganisation().nom }}</p>
+                    <p>Adresse de l'organisation: {{ casting.getOrganisation().adresse }}</p>
+                    <p>Numéro de téléphone: {{ casting.getOrganisation().numeroTelephone }}</p>
+                    <p>Adresse email: {{ casting.getOrganisation().adresseEmail }}</p>
                 </div>
                 <div class="col d-flex flex-column align-items-center" style="width: 20%">
                     <h4>Postuler !</h4>

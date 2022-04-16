@@ -83,14 +83,14 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      *   }
      * )
      */
-    private $identifiantOffre;
+    private $offreDeCasing;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->identifiantOffre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->offreDeCasing = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function getIdentifiant(): ?string
@@ -134,18 +134,6 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(?string $pseudo): self
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
     public function getDatenaissance(): ?\DateTimeInterface
     {
         return $this->datenaissance;
@@ -183,25 +171,25 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Offredecasting>
+     * @return Collection<int, OffreDeCasting>
      */
-    public function getIdentifiantoffre(): Collection
+    public function getOffre(): Collection
     {
-        return $this->identifiantoffre;
+        return $this->offreDeCasing;
     }
 
-    public function addIdentifiantoffre(Offredecasting $identifiantoffre): self
+    public function addIdentifiantoffre(OffreDeCasting $identifiantoffre): self
     {
-        if (!$this->identifiantoffre->contains($identifiantoffre)) {
-            $this->identifiantoffre[] = $identifiantoffre;
+        if (!$this->offreDeCasing->contains($identifiantoffre)) {
+            $this->offreDeCasing[] = $identifiantoffre;
         }
 
         return $this;
     }
 
-    public function removeIdentifiantoffre(Offredecasting $identifiantoffre): self
+    public function removeOffre(OffreDeCasting $identifiantoffre): self
     {
-        $this->identifiantoffre->removeElement($identifiantoffre);
+        $this->offreDeCasing->removeElement($identifiantoffre);
 
         return $this;
     }
@@ -290,5 +278,10 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getFullName()
+    {
+        return $this->prenom . " " . $this->nom;
     }
 }

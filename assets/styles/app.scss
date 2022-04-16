@@ -12,19 +12,45 @@ $primary: darken(#428bca, 20%);
 @import "bootstrap-icons";
 // 5. Add additional custom code here
 
-body{
-    background-color: #e5e4e4;
-    font-weight: bold;
+body {
+  background-color: #e5e4e4;
+  font-weight: bold;
 }
-header{
-    background-color: white;
-    font-weight: bold;
+
+header {
+  background-color: white;
+  font-weight: bold;
 }
-.titre{
+
+.titre {
 }
-a:hover{
-    cursor:pointer;
+
+a:hover {
+  cursor: pointer;
 }
-.container{
-    max-width: 1310px;
+
+.container {
+  max-width: 1310px;
+}
+
+
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
 }

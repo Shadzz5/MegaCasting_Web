@@ -6,14 +6,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * OffreDeCasting
  *
  * @ORM\Table(name="OffreDeCasting", indexes={@ORM\Index(name="IDX_2421F0682B868BAA", columns={"identifiantMetier"}), @ORM\Index(name="IDX_2421F068D58D8CC9", columns={"identifiantOrganisation"}), @ORM\Index(name="IDX_2421F0681ACEB4D9", columns={"identifiantTypeContrat"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\OffreDeCastingRepository")
  */
 class OffreDeCasting
 {
+
     /**
      * @var int
      *
@@ -66,7 +68,7 @@ class OffreDeCasting
      *   @ORM\JoinColumn(name="identifiantMetier", referencedColumnName="identifiant", nullable=false)
      * })
      */
-    private $identifiantMetier;
+    private $metier;
 
     /**
      * @var \Organisation
@@ -76,7 +78,7 @@ class OffreDeCasting
      *   @ORM\JoinColumn(name="identifiantOrganisation", referencedColumnName="identifiant", nullable=false)
      * })
      */
-    private $identifiantOrganisation;
+    private $organisation;
 
     /**
      * @var \TypeContrat
@@ -86,14 +88,14 @@ class OffreDeCasting
      *   @ORM\JoinColumn(name="identifiantTypeContrat", referencedColumnName="identifiant", nullable=false)
      * })
      */
-    private $identifiantTypeContrat;
+    private $typeContrat;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="identifiantoffre")
      */
-    private $identifiantartiste;
+    private $artiste;
 
     /**
      * Constructor
@@ -168,38 +170,38 @@ class OffreDeCasting
         return $this;
     }
 
-    public function getIdentifiantMetier(): Metier
+    public function getMetier(): ?Metier
     {
-        return $this->identifiantMetier;
+        return $this->metier;
     }
 
-    public function setIdentifiantMetier(?Metier $identifiantMetier): self
+    public function setMetier(?Metier $identifiantMetier): self
     {
-        $this->identifiantMetier = $identifiantMetier;
+        $this->metier = $identifiantMetier;
 
         return $this;
     }
 
-    public function getIdentifiantOrganisation(): ?Organisation
+    public function getOrganisation(): ?Organisation
     {
-        return $this->identifiantOrganisation;
+        return $this->organisation;
     }
 
-    public function setIdentifiantOrganisation(?Organisation $identifiantorganisation): self
+    public function setOrganisation(?Organisation $identifiantorganisation): self
     {
-        $this->identifiantOrganisation = $identifiantorganisation;
+        $this->organisation = $identifiantorganisation;
 
         return $this;
     }
 
-    public function getIdentifiantTypeContrat(): ?TypeContrat
+    public function getTypeContrat(): TypeContrat
     {
-        return $this->identifiantTypeContrat;
+        return $this->typeContrat;
     }
 
-    public function setIdentifiantTypeContrat(?TypeContrat $identifianttypecontrat): self
+    public function setTypeContrat(?TypeContrat $identifianttypecontrat): self
     {
-        $this->identifiantTypeContrat = $identifianttypecontrat;
+        $this->typeContrat = $identifianttypecontrat;
 
         return $this;
     }
@@ -207,24 +209,24 @@ class OffreDeCasting
     /**
      * @return Collection<int, Artiste>
      */
-    public function getIdentifiantartiste(): Collection
+    public function getArtiste(): Collection
     {
-        return $this->identifiantartiste;
+        return $this->artiste;
     }
 
-    public function addIdentifiantartiste(Artiste $identifiantartiste): self
+    public function addArtiste(Artiste $identifiantartiste): self
     {
-        if (!$this->identifiantartiste->contains($identifiantartiste)) {
-            $this->identifiantartiste[] = $identifiantartiste;
+        if (!$this->artiste->contains($identifiantartiste)) {
+            $this->artiste[] = $identifiantartiste;
             $identifiantartiste->addIdentifiantoffre($this);
         }
 
         return $this;
     }
 
-    public function removeIdentifiantartiste(Artiste $identifiantartiste): self
+    public function removeArtiste(Artiste $identifiantartiste): self
     {
-        if ($this->identifiantartiste->removeElement($identifiantartiste)) {
+        if ($this->artiste->removeElement($identifiantartiste)) {
             $identifiantartiste->removeIdentifiantoffre($this);
         }
 
