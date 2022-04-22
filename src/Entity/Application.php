@@ -126,7 +126,7 @@ class Application
     /**
      * @return \DateTime
      */
-    public function getApplicationDate(): \DateTime
+    public function getApplicationDate(): ?\DateTime
     {
         return $this->applicationDate;
     }

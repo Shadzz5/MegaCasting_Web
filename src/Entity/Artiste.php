@@ -73,13 +73,13 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="OffreDeCasting", inversedBy="identifiantArtiste")
+     * @ORM\ManyToMany(targetEntity="OffreDeCasting", inversedBy="artiste")
      * @ORM\JoinTable(name="ArtisteOffre",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="identifiantArtiste", referencedColumnName="identifiant")
+     *     @ORM\JoinColumn(name="artiste", referencedColumnName="identifiant")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="identifiantOffre", referencedColumnName="identifiant")
+     *     @ORM\JoinColumn(name="offreDeCasing", referencedColumnName="identifiant")
      *   }
      * )
      */
@@ -175,21 +175,22 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getOffre(): Collection
     {
+        
         return $this->offreDeCasing;
     }
 
-    public function addIdentifiantoffre(OffreDeCasting $identifiantoffre): self
+    public function addOffre(OffreDeCasting $offre): self
     {
-        if (!$this->offreDeCasing->contains($identifiantoffre)) {
-            $this->offreDeCasing[] = $identifiantoffre;
+        if (!$this->offreDeCasing->contains($offre)) {
+            $this->offreDeCasing[] = $offre;
         }
 
         return $this;
     }
 
-    public function removeOffre(OffreDeCasting $identifiantoffre): self
+    public function removeOffre(OffreDeCasting $offre): self
     {
-        $this->offreDeCasing->removeElement($identifiantoffre);
+        $this->offreDeCasing->removeElement($offre);
 
         return $this;
     }

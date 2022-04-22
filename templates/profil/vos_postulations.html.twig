@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class=" d-flex">
+            {% for artiste in artiste.getOffre() %}
+                
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

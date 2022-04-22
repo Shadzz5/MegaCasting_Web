@@ -93,7 +93,7 @@ class OffreDeCasting
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="identifiantoffre")
+     * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="offreDeCasing")
      */
     private $artiste;
 
@@ -218,7 +218,7 @@ class OffreDeCasting
     {
         if (!$this->artiste->contains($identifiantartiste)) {
             $this->artiste[] = $identifiantartiste;
-            $identifiantartiste->addIdentifiantoffre($this);
+            $identifiantartiste->addOffre($this);
         }
 
         return $this;
@@ -227,7 +227,7 @@ class OffreDeCasting
     public function removeArtiste(Artiste $identifiantartiste): self
     {
         if ($this->artiste->removeElement($identifiantartiste)) {
-            $identifiantartiste->removeIdentifiantoffre($this);
+            $identifiantartiste->removeOffre($this);
         }
 
         return $this;

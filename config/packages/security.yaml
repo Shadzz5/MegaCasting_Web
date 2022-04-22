@@ -18,8 +18,8 @@ security:
       lazy: true
       provider: app_user_provider
       form_login:
-        login_path: login
-        check_path: login
+        login_path: connexion
+        check_path: connexion
         enable_csrf: true
       logout:
         path: app_logout
