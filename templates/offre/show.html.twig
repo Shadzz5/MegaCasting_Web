@@ -23,10 +23,14 @@
                     <p>Numéro de téléphone: {{ casting.getOrganisation().numeroTelephone }}</p>
                     <p>Adresse email: {{ casting.getOrganisation().adresseEmail }}</p>
                 </div>
-                <div class="col d-flex flex-column align-items-center" style="width: 20%">
-                    <h4>Postuler !</h4>
-                    <a class="btn btn-outline-success w-50" href="{{ path('postuler', {'id': casting.identifiant}) }}">Postuler</a>
-                </div>
+                {% if(is_granted("IS_AUTHENTICATED_FULLY")) %}
+
+                    <div class="col d-flex flex-column align-items-center" style="width: 20%">
+                        <h4>Postuler !</h4>
+                        <a class="btn btn-outline-success w-50"
+                           href="{{ path('postuler', {'id': casting.identifiant}) }}">Postuler</a>
+                    </div>
+                {% endif %}
 
             </div>
         </div>

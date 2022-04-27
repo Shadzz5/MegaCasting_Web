@@ -1,13 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfilController!{% endblock %}
+{% block title %}Vos Postulations{% endblock %}
 
 {% block body %}
     <div class="container">
-        <div class=" d-flex">
-            {% for artiste in artiste.getOffre() %}
-                
+        <div class="d-flex flex-column align-items-center">
+            {% for postulation in postulations %}
+                <div class="card w-75">
+                    <div class="card-body">
+                        <div class="card-text" style="font-size: 25px">{{ postulation.offreDeCasting.getNom() }}</div>
+                        <div class="card-text" style="font-size: 20px">
+                            Par {{ postulation.offreDeCasting.organisation.getNom() }}</div>
+                        <div class="card-text" style="font-size: 20px"> Motivation
+                            : {{ postulation.getMotivation() }}</div>
+                        <div class="card-text" style="font-size: 20px"> Date de postulation
+                            : {{ postulation.getDatePostulation()|date('d/m/Y') }}</div>
+                        {#                        <a class="btn btn-danger"> Retirer</a> #}
+                    </div>
+
+                </div>
             {% endfor %}
+
+
         </div>
     </div>
 

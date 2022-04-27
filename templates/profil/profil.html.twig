@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Profil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class=" d-flex">
+
+            <div class="d-flex flex-column align-items-center  w-75 mt-5">
+
+                <h1>{{ artiste.fullname }}</h1>
+                <ul class="list-group">
+                    <li class="list-group-item "> Date de naissance : {{ artiste.dateNaissance|date }}</li>
+                    <li class="list-group-item"> Email : {{ artiste.email }}</li>
+                    <li class="list-group-item"> CV : {{ artiste.cv }}</li>
+                </ul>
+            </div>
+            <div class="text-center mt-5">
+                <div style="border: 2px solid white; border-radius: 25px; padding: 10px; background-color: white">
+                    <a href="{{ url("vos_postulations") }}">Vos postulations</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

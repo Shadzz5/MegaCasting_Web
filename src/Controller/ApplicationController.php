@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Application;
+use App\Entity\Postulation;
 use App\Form\Type\ApplicationType;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,24 +16,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApplicationController extends AbstractController
 {
     #[Route('{id}/new', name: 'postuler')]
-    public function new(Request $request, $id): Response
+    public function new(Request $request, $id, ManagerRegistry $doctrine): Response
     {
-        $application = new Application();
-
+        $user = $this->getUser();
+        $application = new Postulation();
+        $application->setDatePostulation(new \DateTime('today'));
         $form = $this->createForm(ApplicationType::class, $application);
-        $application->setOffreIdentifiant($id);
-        $application->setApplicationDate(new \DateTime('today'));
+
+        $em = $doctrine->getManager();
+        $query = $em->createQuery('SELECT c FROM App\Entity\OffreDeCasting c WHERE c.identifiant = :id')->setMaxResults(1);
+        $query->setParameter('id', $id);
+        $casting = $query->getResult()[0];
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $application = $form->getData();
-            // ... perform some action, such as saving the task to the database
+            $application->setArtiste($user);
+            $application->setOffreDeCasting($casting);
+            $application->setMotivation($form['motivation']->getData());
+            $em->persist($application);
+            $em->flush();
 
             return $this->redirectToRoute('offre');
         }
-
         return $this->renderForm('application/new.html.twig', [
             'form' => $form,
         ]);

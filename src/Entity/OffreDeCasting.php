@@ -89,13 +89,11 @@ class OffreDeCasting
      * })
      */
     private $typeContrat;
-
+    
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Artiste", mappedBy="offreDeCasing")
+     * @ORM\OneToMany(targetEntity=Postulation::class, mappedBy="offreDeCasting", orphanRemoval=true)
      */
-    private $artiste;
+    private $postulations;
 
     /**
      * Constructor
@@ -103,6 +101,7 @@ class OffreDeCasting
     public function __construct()
     {
         $this->identifiantartiste = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->postulations = new ArrayCollection();
     }
 
     public function getIdentifiant(): ?int
@@ -206,28 +205,29 @@ class OffreDeCasting
         return $this;
     }
 
-    /**
-     * @return Collection<int, Artiste>
-     */
-    public function getArtiste(): Collection
+
+    public function getPostulations(): Collection
     {
-        return $this->artiste;
+        return $this->postulations;
     }
 
-    public function addArtiste(Artiste $identifiantartiste): self
+    public function addPostulation(Postulation $postulation): self
     {
-        if (!$this->artiste->contains($identifiantartiste)) {
-            $this->artiste[] = $identifiantartiste;
-            $identifiantartiste->addOffre($this);
+        if (!$this->postulations->contains($postulation)) {
+            $this->postulations[] = $postulation;
+            $postulation->setOffreDeCasting($this);
         }
 
         return $this;
     }
 
-    public function removeArtiste(Artiste $identifiantartiste): self
+    public function removePostulation(Postulation $postulation): self
     {
-        if ($this->artiste->removeElement($identifiantartiste)) {
-            $identifiantartiste->removeOffre($this);
+        if ($this->postulations->removeElement($postulation)) {
+            // set the owning side to null (unless already changed)
+            if ($postulation->getOffreDeCasting() === $this) {
+                $postulation->setOffreDeCasting(null);
+            }
         }
 
         return $this;

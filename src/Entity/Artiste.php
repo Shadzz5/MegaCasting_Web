@@ -70,20 +70,6 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
      * })
      */
     private $identifiantCivilite;
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="OffreDeCasting", inversedBy="artiste")
-     * @ORM\JoinTable(name="ArtisteOffre",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="artiste", referencedColumnName="identifiant")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="offreDeCasing", referencedColumnName="identifiant")
-     *   }
-     * )
-     */
-    private $offreDeCasing;
 
     /**
      * Constructor
@@ -91,6 +77,7 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->offreDeCasing = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->postulations = new ArrayCollection();
     }
 
     public function getIdentifiant(): ?string
@@ -171,31 +158,6 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, OffreDeCasting>
-     */
-    public function getOffre(): Collection
-    {
-        
-        return $this->offreDeCasing;
-    }
-
-    public function addOffre(OffreDeCasting $offre): self
-    {
-        if (!$this->offreDeCasing->contains($offre)) {
-            $this->offreDeCasing[] = $offre;
-        }
-
-        return $this;
-    }
-
-    public function removeOffre(OffreDeCasting $offre): self
-    {
-        $this->offreDeCasing->removeElement($offre);
-
-        return $this;
-    }
-
-    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -215,6 +177,11 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
         message: 'la valeur {{ value }} n\'est pas une email',
     )]
     private $email;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Postulation::class, mappedBy="artiste", orphanRemoval=true)
+     */
+    private $postulations;
 
     /**
      * A visual identifier that represents this user.
@@ -284,5 +251,35 @@ class Artiste implements UserInterface, PasswordAuthenticatedUserInterface
     public function getFullName()
     {
         return $this->prenom . " " . $this->nom;
+    }
+
+    /**
+     * @return Collection<int, Postulation>
+     */
+    public function getPostulations(): Collection
+    {
+        return $this->postulations;
+    }
+
+    public function addPostulation(Postulation $postulation): self
+    {
+        if (!$this->postulations->contains($postulation)) {
+            $this->postulations[] = $postulation;
+            $postulation->setArtiste($this);
+        }
+
+        return $this;
+    }
+
+    public function removePostulation(Postulation $postulation): self
+    {
+        if ($this->postulations->removeElement($postulation)) {
+            // set the owning side to null (unless already changed)
+            if ($postulation->getArtiste() === $this) {
+                $postulation->setArtiste(null);
+            }
+        }
+
+        return $this;
     }
 }
