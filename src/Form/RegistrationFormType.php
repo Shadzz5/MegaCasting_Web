@@ -35,12 +35,14 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('dateNaissance', \Symfony\Component\Form\Extension\Core\Type\DateType::class, [
                 'years' => range(date('Y'), date('Y') - 80),
-            ])->add('verification')
+            ])->add('verification', CheckboxType::class, ['label' => 'Vous avez bien 18 ou plus'])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
+                'label' => 'Accepter nos termes',
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
+
                     ]),
                 ],
             ])
