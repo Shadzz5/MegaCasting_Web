@@ -19,6 +19,8 @@ security:
       provider: app_user_provider
       form_login:
         login_path: connexion
+        default_target_path: profil
+        failure_path_parameter: back_to
         check_path: connexion
         enable_csrf: true
       logout:
