@@ -84,7 +84,14 @@
                                 </a>
                             {% endfor %}
                             <div class="d-flex justify-content-center">
-                                {{ knp_pagination_render(offre_castings) }}
+                                {#                                {{ knp_pagination_render(offre_castings) }} #}
+                                <ul class="pagination d-flex flex-lg-row align-content-center">
+                                    {% for item in 1..((total / limit)|round(0, 'ceil')) %}
+                                        <li class="page-item page-link">
+                                            <a href="?page={{ item }} ">{{ item }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     {% endif %}

@@ -7,6 +7,7 @@ use App\Entity\Domaine;
 use App\Entity\Metier;
 use App\Entity\OffreDeCasting;
 use App\Entity\TypeContrat;
+use App\Pagination;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,10 +31,12 @@ class OffreController extends AbstractController
     }
 
     #[Route('/offre/{categorie?}', name: 'offre')]
-    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie, PaginatorInterface $paginator): Response
+    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie): Response
     {
         $em = $doctrine->getManager();
+        $offreRepository = $em->getRepository(OffreDeCasting::class);
         $search = '';
+
 
         if ($request->query->get("q")) {
             $search = $request->query->get('q');
@@ -59,7 +62,6 @@ class OffreController extends AbstractController
         $domaine = $em->getRepository(Domaine::class);
         $metier = $em->getRepository(Metier::class);
 
-        $offreRepository = $em->getRepository(OffreDeCasting::class);
         $d = $domaine->findAll();
         $tc = $typeContrat->findAll();
         $m = $metier->findAll();
@@ -77,22 +79,28 @@ class OffreController extends AbstractController
         if ($selectMetier != 0) {
             $oc = $offreRepository->findByMetier($selectMetier);
         }
-        $paginationOffre = $paginator->paginate(
-        // Doctrine Query, not results
-            $oc,
-            // Define the page parameter
-            $request->query->getInt('page', 1),
-            // Items per page
-            12
-        );
+
+//        $pagination = $paginator->paginate(
+//            $oc,
+//            $request->query->getInt('page', 1), /*page number*/
+//        );
+        $limit = 18;
+        $page = (int)$request->query->get("page", 1);
+        $oc = $offreRepository->getPaginateCastings($page, $limit);
+        $total = $offreRepository->getTotalCastings();
+
+        // Pass through the 3 above variables to calculate pages in twig
         return $this->render('offre/offre.html.twig', [
-            'offre_castings' => $paginationOffre,
+            'offre_castings' => $oc,
             'domaines' => $d,
             'metiers' => $m,
             'typeContrats' => $tc,
             'search' => $search,
             'empty' => $bool,
             'categorie' => $categorie,
+            'total' => $total,
+            'page' => $page,
+            'limit' => $limit
 
         ]);
     }

@@ -8,11 +8,29 @@ use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 
 class OffreDeCastingRepository extends EntityRepository
 {
+
+    public function getPaginateCastings($page, $limit)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->setFirstResult(($page * $limit) - $limit)
+            ->setMaxResults($limit);
+        return $query
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getTotalCastings()
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('COUNT(o)');
+        return $query->getQuery()->getSingleScalarResult();
+    }
 
     public function findByDomaine(int $value)
     {
@@ -20,6 +38,18 @@ class OffreDeCastingRepository extends EntityRepository
             ->setParameter('val', $value)
             ->getResult();
 
+    }
+
+    public function castingByPage(int $nbPage)
+    {
+        $em = $this->_em
+            ->createQuery('SELECT o FROM App\Entity\OffreDeCasting o')
+            ->setMaxResults(2)
+            ->setFirstResult($nbPage)
+            ->getResult();
+
+        $results = $em;
+        return $results;
     }
 
     public function findByContrat(?int $value)

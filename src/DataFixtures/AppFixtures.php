@@ -42,19 +42,18 @@ class AppFixtures extends Fixture
 
         $i = 0;
 
-        for ($i; $i < 10; $i++) {
-            $artiste = new Artiste();
-            $artiste->setIdentifiantcivilite($civ1);
-            $password = $this->hasher->hashPassword($artiste, 'Not24get');
-            $artiste->setPassword($password);
-            $nom = str_repeat(chr(65 + $i), 10);
-            $artiste->setNom($nom);
-            $artiste->SetPrenom(strtolower($nom));
-            $artiste->SetEmail(strtolower($nom . "@test.com"));
-            $artiste->setDatenaissance(new \DateTime());
-            $artiste->setVerification(true);
-            $manager->persist($artiste);
-        }
+
+        $artiste = new Artiste();
+        $artiste->setIdentifiantcivilite($civ1);
+        $password = $this->hasher->hashPassword($artiste, 'Not24get');
+        $artiste->setPassword($password);
+        $artiste->setNom('Quiercelin');
+        $artiste->SetPrenom('Kevin');
+        $artiste->SetEmail('quiercelinkevin@gmail.com');
+        $artiste->setDatenaissance(new \DateTime());
+        $artiste->setVerification(true);
+        $manager->persist($artiste);
+
         $organisation = new Organisation();
         $nom = 'Organisation1';
         $organisation->setNom($nom);
