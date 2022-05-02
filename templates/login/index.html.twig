@@ -5,11 +5,12 @@
 
 {% block body %}
     {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {#        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div> #}
+        <div class="alert alert-danger">Identifiant invalide pour l'artiste {{ last_username }}</div>
+
     {% endif %}
     <div class="container">
         <div class="d-flex flex-column align-items-center">
-
             <h1>Connexion</h1>
             <form action="{{ path('connexion') }}" method="post" class="d-flex flex-column">
                 <label for="username">Email:</label>
@@ -25,4 +26,5 @@
             </form>
         </div>
     </div>
+
 {% endblock %}
