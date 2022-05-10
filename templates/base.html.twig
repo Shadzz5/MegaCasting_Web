@@ -21,7 +21,7 @@
         {% if(is_granted("IS_AUTHENTICATED_FULLY")) %}
             <a type="" class="mt-3" style="margin-right: 20px; text-decoration: none; color: black"
                href="{{ url('profil') }}">{{ app.user.fullname }}
-       
+
             </a>
             <a type="button" class="btn btn-outline-primary mt-2" style="margin-right: 20px;"
                href="{{ url('app_logout') }}">Déconnexion
@@ -57,12 +57,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('abonnement') }}">Abonnements</a>
-                    </li>
-                    <li class=" nav-item">
-                        <a class="nav-link active" aria-current="page">Actualités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page">Interviews</a>
                     </li>
                 </ul>
                 <form class="d-flex" action="offre">
