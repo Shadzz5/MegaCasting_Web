@@ -9,6 +9,7 @@ use App\Entity\OffreDeCasting;
 use App\Entity\TypeContrat;
 use App\Pagination;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,7 +32,7 @@ class OffreController extends AbstractController
     }
 
     #[Route('/offre/{categorie?}', name: 'offre')]
-    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie): Response
+    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie, Paginator $paginator): Response
     {
         $em = $doctrine->getManager();
         $offreRepository = $em->getRepository(OffreDeCasting::class);
@@ -80,10 +81,10 @@ class OffreController extends AbstractController
             $oc = $offreRepository->findByMetier($selectMetier);
         }
 
-//        $pagination = $paginator->paginate(
-//            $oc,
-//            $request->query->getInt('page', 1), /*page number*/
-//        );
+        $pagination = $paginator->paginate(
+            $oc,
+            $request->query->getInt('page', 1), /*page number*/
+        );
 //        $limit = 18;
 //        $page = (int)$request->query->get("page", 1);
 //        $oc = $offreRepository->getPaginateCastings($page, $limit);
