@@ -84,10 +84,10 @@ class OffreController extends AbstractController
 //            $oc,
 //            $request->query->getInt('page', 1), /*page number*/
 //        );
-        $limit = 18;
-        $page = (int)$request->query->get("page", 1);
-        $oc = $offreRepository->getPaginateCastings($page, $limit);
-        $total = $offreRepository->getTotalCastings();
+//        $limit = 18;
+//        $page = (int)$request->query->get("page", 1);
+//        $oc = $offreRepository->getPaginateCastings($page, $limit);
+//        $total = $offreRepository->getTotalCastings();
 
         // Pass through the 3 above variables to calculate pages in twig
         return $this->render('offre/offre.html.twig', [
@@ -98,9 +98,9 @@ class OffreController extends AbstractController
             'search' => $search,
             'empty' => $bool,
             'categorie' => $categorie,
-            'total' => $total,
-            'page' => $page,
-            'limit' => $limit
+//            'total' => $total,
+//            'page' => $page,
+//            'limit' => $limit
 
         ]);
     }
