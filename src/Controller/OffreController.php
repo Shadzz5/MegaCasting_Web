@@ -7,9 +7,7 @@ use App\Entity\Domaine;
 use App\Entity\Metier;
 use App\Entity\OffreDeCasting;
 use App\Entity\TypeContrat;
-use App\Pagination;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +30,7 @@ class OffreController extends AbstractController
     }
 
     #[Route('/offre/{categorie?}', name: 'offre')]
-    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie, Paginator $paginator): Response
+    public function offre(Request $request, SessionInterface $session, ManagerRegistry $doctrine, $categorie, PaginatorInterface $paginator): Response
     {
         $em = $doctrine->getManager();
         $offreRepository = $em->getRepository(OffreDeCasting::class);
@@ -81,9 +79,13 @@ class OffreController extends AbstractController
             $oc = $offreRepository->findByMetier($selectMetier);
         }
 
-        $pagination = $paginator->paginate(
+        $paginationOffre = $paginator->paginate(
+        // Doctrine Query, not results
             $oc,
-            $request->query->getInt('page', 1), /*page number*/
+            // Define the page parameter
+            $request->query->getInt('page', 1),
+            // Items per page
+            12
         );
 //        $limit = 18;
 //        $page = (int)$request->query->get("page", 1);
@@ -92,7 +94,7 @@ class OffreController extends AbstractController
 
         // Pass through the 3 above variables to calculate pages in twig
         return $this->render('offre/offre.html.twig', [
-            'offre_castings' => $oc,
+            'offre_castings' => $paginationOffre,
             'domaines' => $d,
             'metiers' => $m,
             'typeContrats' => $tc,

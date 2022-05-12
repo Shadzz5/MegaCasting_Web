@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
         $artiste->setPassword($password);
         $artiste->setNom('Quiercelin');
         $artiste->SetPrenom('Kevin');
-        $artiste->SetEmail('quiercelinkevin@gmail.com');
+        $artiste->SetEmail('mail@artiste.fr');
         $artiste->setDatenaissance(new \DateTime());
         $artiste->setVerification(true);
         $manager->persist($artiste);
