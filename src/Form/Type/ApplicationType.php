@@ -15,13 +15,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ApplicationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('motivation', TextareaType::class, ['required' => false])
+            ->add('motivation', TextareaType::class, ['required' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Vous devez renseigner une motivation',
+                    ])
+                ]])
             ->add('save', SubmitType::class, ['label' => 'Postuler']);;
     }
 
