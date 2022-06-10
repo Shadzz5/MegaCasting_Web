@@ -31,7 +31,6 @@ class ApplicationController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $application->setArtiste($user);
-            dd($application);
             $application->setOffreDeCasting($casting);
             $application->setMotivation($form['motivation']->getData());
             $em->persist($application);
